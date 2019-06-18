@@ -1,19 +1,5 @@
 <script>
-	export let name;
-
-	function clearName(e) {
-	    name = '';
-	}
+    import Parent from './components/parent.svelte';
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
-
-Name: <input bind:value={name} />
-
-<button on:click={clearName}>Clear</button>
-
-<h1>Hello {name || 'world'}!</h1>
+<Parent />>
