@@ -29,9 +29,9 @@ The simplest way for a child to communicate with its parent is to dispatch a mes
   import { createEventDispatcher } from 'svelte';
   
   const dispatcher = createEventDispatcher();
-  
-  function askQuestion(event) {
-    dispatch('areWeThereYet');
+
+  function askQuestion() {
+     dispatch('areWeThereYet', { name });
   }
 </script>
 
@@ -45,8 +45,8 @@ The **dispatch()** call generates a custom event, in this case **areWeThereYet**
 <script>
   let answer = '';
   
-  function areWeThereYet(event) {
-    answer = 'No';
+  function answerNo({ detail: { name } }) {
+    answer = `No, we aren't, ${name}.`;
   }
 </script>
 
@@ -56,4 +56,22 @@ The **dispatch()** call generates a custom event, in this case **areWeThereYet**
   {answer}
 </div>
 ```
+
+### Events Don't Bubble
+
+In Svelte, an event only passes to the immediate parent of the component that dispatches it. 
+
+To have it go further, the parent component needs to include an **on:eventX** property, but without a handler.
+
+So, for example, if the <Parent> component above didn't need to handle the **areWeThereYet** event itself, it could simply say
+
+```javascript
+<Child name="Mary" on:areWeThereYet></Child>
+```
+
+and that event would be passed to its parent.
+
+If a parent component doesn't have an **on** for a given event, it is simply discarded.
+
+We will discuss how Svelte approaches non-local state shortly.
 

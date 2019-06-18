@@ -10,5 +10,5 @@
     }
 </script>
 
-{name} <button on:click={askQuestion}>Are we there yet?</button>
+<button on:click={askQuestion}>{name}: Are we there yet?</button>
 <br/>
