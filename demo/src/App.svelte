@@ -1,5 +1,9 @@
 <script>
 	export let name;
+
+	function clearName(e) {
+	    name = '';
+	}
 </script>
 
 <style>
@@ -8,4 +12,8 @@
 	}
 </style>
 
-<h1>Hello {name}!</h1>
+Name: <input bind:value={name} />
+
+<button on:click={clearName}>Clear</button>
+
+<h1>Hello {name || 'world'}!</h1>

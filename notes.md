@@ -1,101 +1,32 @@
-#Initialising A Svelte App
+#Binding Data and Events
 
-###Clone An Empty Svelte Repository
+###Binding Data
 
-npx degit sveltejs/template demo`
+Like in "*the good old days*" of **Angular 1.x**, Svelte supports two-way binding of HTML with variables.
 
-###Building The Application
+For example, in our  <App> component, we could bind the value of an input field to the **name** property that was passed in and have the text change as we type new values.
 
-The default template uses **rollup** for building, but there are variants for webpack and parcel.
+```html
+Name: <input bind:value={name} />
+```
 
-Here's the **package.json** file.
+Note that this is local to the component, and would not change a variable in the parent component that's being used to set the property.  We'll discuss how to handle that case later.
 
-```json
-{
-	"name": "svelte-app",
-  "version": "1.0.0",
-  "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "rollup": "^1.10.1",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-node-resolve": "^4.2.3",
-    "rollup-plugin-svelte": "^5.0.3",
-    "rollup-plugin-terser": "^4.0.4",
-    "svelte": "^3.0.0"
-  },
-  "dependencies": {
-    "sirv-cli": "^0.4.4"
-  },
-  "scripts": {
-    "build": "rollup -c",
-    "autobuild": "rollup -c -w",
-    "dev": "run-p start:dev autobuild",
-    "start": "sirv public --single",
-    "start:dev": "sirv public --single --dev"
-  }
+### Binding Events
+
+Any event emitted by an HTML element can be bound to a handler that is a normal JavaScript function (*a la*  vanilla **addEventListener()**).  Here's how we might add a button to clear the input field.
+
+```javascript
+<button on:click={clearName}>Clear</button>
+```
+
+Since the binding is two-way, the handler code would be as simple as
+
+```javascript
+function clearName(event) {
+  name = '';
 }
 ```
 
-Note, as mentioned, there is almost nothing in the dependencies section; most packages are in **devDependencies**.  The single **sirv-cli** item imports a static web server, similar to http-server, that provides browser access to the app during development.
-
-###Running
-
-All we need is an initial **npm i** to install the dependencies and then we can execute **npm run  dev** to watch the source code, rebuilding and live reloading as needed.
-
-Pointing our browser to <http://localhost:5000> will display the app.
-
-### Bootstrapping
-
-The file **main.js** is our starting point.
-
-```javascript
-import App from './App.svelte';
-
-const app = new App({
-	target: document.body,
-	props: {
-		name: 'world'
-	}
-});
-
-export default app;
-```
-
-The **target** field specifies where in the HTML the <App> component will be mounted.  The default is to replace the entire <body>, but you can use **document.querySelector()** to mount at a specific location.
-
-The **props** field provides the properties for the top-level tag. So, the code here will effectively insert <App name="world"> into the body of our HTML.
-
-### Components
-
-Note that we're importing **App** from **App.svelte**; this is our first component.  The  contents of that file are:
-
-```javascript
-<script>
-	export let name;
-</script>
-
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
-
-<h1>Hello {name}!</h1>
-
-```
-
-Note how, like Vue, a Svelte component provides the entire definition of the component within a single file: HTML, CSS and JavaScript.
-
-### Properties
-
-Any variable that is defined using **export let** becomes a property, that can be set by the HTML that references the component.  In this case, the initialisation code in **main.js** passes a value of "**world**" for the single property **name**.
-
-### Styling
-
-Svelte automatically adds a hash to CSS classes defined within in a component, so they do not leak out; neither into HTML that references the component, nor to any other components.
-
-### Templating
-
-Svelte uses single braces... eg **{name}** here... to reference variable values, which could be properties passed in or other variables defined within any <script> tags in the component's code.
+In this case, we're ignoring the event that is passed in the call, but other handlers can obviously use it.  For example, in an **onChange** event handler might retrieve the content of an <input> or <textarea> using **e.target.value**.
 
