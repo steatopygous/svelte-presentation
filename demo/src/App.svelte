@@ -4,4 +4,8 @@
     import Loops from './components/loops.svelte';
 </script>
 
+<ConditionalCode />
+<hr/>
+<Loops />
+<hr/>
 <ConditionalStyles />

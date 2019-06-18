@@ -1,7 +1,9 @@
 <script>
     let behaviour = '';
 
+    $: behaviourText = behaviour.toLowerCase();
     $: nice = behaviour == 'Nice';
+    $: behaviourClass = nice ? 'nice' : 'naughty';
 </script>
 
 <style>
@@ -13,7 +15,8 @@
     {#if behaviour === ''}
         Have you been naughty or nice this year?
     {:else}
-        So, you were <span class:nice class:naughty={!nice}>{behaviour.toLowerCase()}.</span>
+        You were <span class:nice class:naughty={!nice}>{behaviourText}.</span>
+        Really <span class={behaviourClass}>{behaviourText}!</span>
     {/if}
 </div>
 
