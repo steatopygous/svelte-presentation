@@ -1,120 +1,45 @@
-#Dynamic Rendering
+#Handling Promises
 
-The Svelte approach to generating dynamic HTML is similar to Angular's, in that it uses special syntax, as opposed to JavaScript code.
+Because promises are such a big part of JavaScript these days, Svelte provides a way to render content that depends on them.
 
-However, rather than adding pseudo properties to the HTML, it uses a separate syntax that separates things a bit more cleanly.
-
-### Conditional Code
-
-To have HTML rendered based on data, we use code like the following:
+In the following code, the HTML inside the **{#await}** block is rendered while the promise is pending, once it completes, either the **{:then}** or **{:error}** content will be rendered, depending on whether the promise was resolved or rejected.
 
 ```javascript
 <script>
-    let framework = '';
+	let promise = getRandomValueAfterSnoozing(1);
+
+	async function getRandomValueAfterSnoozing(seconds) {
+	    return new Promise((resolve, reject) => {
+    	    function getRandomNumber() {
+    	        const value = Math.random();
+
+                if (value > 0.5) {
+                    resolve(value);
+                } else {
+                    reject(new Error(`Value too small ... ${value}`));
+                }
+    	    }
+
+	        setTimeout(getRandomNumber, seconds * 1000);
+	    });
+	}
+
+	function handleClick() {
+		promise = getRandomValueAfterSnoozing(1);
+	}
 </script>
 
-<div>
-    <span>
-        {#if framework === ''}
-            What web framework do you use?
-        {:else}
-            {framework}, eh?
-            {#if framework === 'Elm'}
-              Nirvana!
-            {:else if framework === 'Svelte'}
-              You must enjoy your work.
-            {:else}
-              Looks like you are happy to work hard :-).
-          {/if}
-        {/if}
-    </span>
-</div>
-<br/>
+<button on:click={handleClick}>
+	generate random number
+</button>
 
-<div>
-    <button on:click={() => framework='Svelte'}>Svelte</button>
-    <button on:click={() => framework='React'}>React</button>
-    <button on:click={() => framework='Elm'}>Elm</button>
-</div>
-
- 
-```
-
-### Loops
-
-Svelte provides an **{#each}** construct for generating separate elements for each value in a collection. For example, let's clean up the set of buttons above a little:
-
-```javascript
-<script>
-  const frameworks = ['Angular', 'React', 'Svelte', 'Elm'];
-  let framework = '';
-</script>
-
-<div>
-  {#each frameworks as f}
-      <button on:click={() => framework = f}>{f}</button>
-  {/each}
-</div>
-
-```
-
-### Conditional CSS
-
-The syntax **class:name=condition** allows us to add classes to an element dynamically.  For example, in the following HTML, the **nice** class would be added whenever the value of **behaviour** is "Nice".  The **naughty** class would be added whenever behaviour *isn't* "Nice".
-
-Note the shortcut when giving the CSS class the same name as the predicate.  We don't need to say **class:nice={nice}**, just **class:nice**.
-
-```html
-<script>
-    let behaviour = '';
-
-    $: behaviourText = behaviour.toLowerCase();
-    $: nice = behaviour == 'Nice';
-    $: behaviourClass = nice ? 'nice' : 'naughty';
-</script>
-
-<style>
-    .nice    { color: green; }
-    .naughty { color: red;   }
-</style>
-
-<div>
-    {#if behaviour === ''}
-        Have you been naughty or nice this year?
-    {:else}
-        You were <span class:nice class:naughty={!nice}>{behaviourText}.</span>
-        Really <span class={behaviourClass}>{behaviourText}!</span>
-    {/if}
-</div>
-
-<br/>
-
-<div>
-    <button on:click={() => behaviour = 'Naughty'}>Naughty</button>
-    <button on:click={() => behaviour = 'Nice'}>Nice</button>
-</div>
-```
-
-You may have noticed the weird syntax "**$: behaviourText =…**".  This is actually normal JavaScript; "**label:** ..." defines a label for a line of code; you could jump to that line using **break label;**" or "**continue label**;".  However, it's something that's rarely used.
-
-So, the Svelte compiler coopts it to mean "*This variable is a derived value that should be recalculated if anything on the right hand side changes.*"
-
-So, whenever we update the value of **behaviour**, this assignment will be re-executed and any markup that references **behaviourText** will be re-rendered.
-
-Given that the classes **naughty** and **nice** are mutually exclusive, it's a little messy to reference them both in the span; it would be nicer if we could just decide which one is required. We can use variable interpolation to achieve this:
-
-```html
-<script>
-    let behaviour = '';
-
-    $: behaviourText = behaviour.toLowerCase();
-    $: nice = behaviour == 'Nice';
-    $: behaviourClass = nice ? 'nice' : 'naughty';
-</script>
-
-<div>
-  You were <span class={behaviourClass}>{behaviourText}.</span>
-</div>
+{#await promise}
+	<p>Waiting...</p>
+{:then number}
+	<p>Value is {number}</p>
+{:catch error}
+	<p style="color: red">{error.message}</p>
+{/await}
 
 ```
 

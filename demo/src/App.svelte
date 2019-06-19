@@ -18,7 +18,7 @@
 	}
 
 	function handleClick() {
-		$: promise = getRandomValueAfterSnoozing(1);
+		promise = getRandomValueAfterSnoozing(1);
 	}
 </script>
 
