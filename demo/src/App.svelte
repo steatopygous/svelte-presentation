@@ -1,17 +1,15 @@
 <script>
-	let promise = resolveAfterSnoozing(5);
+	let promise = getRandomValueAfterSnoozing(1);
 
-	async function resolveAfterSnoozing(seconds) {
+	async function getRandomValueAfterSnoozing(seconds) {
 	    return new Promise((resolve, reject) => {
     	    function getRandomNumber() {
-    	        console.log(`getRandomNumber()`);
-
     	        const value = Math.random();
 
                 if (value > 0.5) {
                     resolve(value);
                 } else {
-                    throw new Error('Random value too small');
+                    reject(new Error(`Value too small ... ${value}`));
                 }
     	    }
 
@@ -20,7 +18,7 @@
 	}
 
 	function handleClick() {
-		$: promise = getRandomNumber(5);
+		$: promise = getRandomValueAfterSnoozing(1);
 	}
 </script>
 
@@ -29,9 +27,9 @@
 </button>
 
 {#await promise}
-	<p>...waiting</p>
+	<p>Waiting...</p>
 {:then number}
-	<p>The number is {number}</p>
+	<p>Value is {number}</p>
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}
