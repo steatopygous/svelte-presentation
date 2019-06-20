@@ -1,35 +1,12 @@
 <script>
-	let promise = getRandomValueAfterSnoozing(1);
+   import NameInput from './components/name-input.svelte'
 
-	async function getRandomValueAfterSnoozing(seconds) {
-	    return new Promise((resolve, reject) => {
-    	    function getRandomNumber() {
-    	        const value = Math.random();
+   let who = 'Svelte';
 
-                if (value > 0.5) {
-                    resolve(value);
-                } else {
-                    reject(new Error(`Value too small ... ${value}`));
-                }
-    	    }
-
-	        setTimeout(getRandomNumber, seconds * 1000);
-	    });
-	}
-
-	function handleClick() {
-		promise = getRandomValueAfterSnoozing(1);
-	}
+   $: greeting = `Hello, ${who}!`;
 </script>
 
-<button on:click={handleClick}>
-	generate random number
-</button>
-
-{#await promise}
-	<p>Waiting...</p>
-{:then number}
-	<p>Value is {number}</p>
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
+<div>
+<NameInput bind:name={who} />
+<b>{greeting}</b>
+</div>

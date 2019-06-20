@@ -1,45 +1,33 @@
-#Handling Promises
+#Parent-Child Property Bindings
 
-Because promises are such a big part of JavaScript these days, Svelte provides a way to render content that depends on them.
+Just as we can bind to properties of built-in HTML elements like **<input>**, we can do the same for custom components.
 
-In the following code, the HTML inside the **{#await}** block is rendered while the promise is pending, once it completes, either the **{:then}** or **{:error}** content will be rendered, depending on whether the promise was resolved or rejected.
+In the following code, we are binding the property **who** of <App> to the property **name** of the child component.
 
-```javascript
+```html
 <script>
-	let promise = getRandomValueAfterSnoozing(1);
+   import NameInput from './components/name-input.svelte'
 
-	async function getRandomValueAfterSnoozing(seconds) {
-	    return new Promise((resolve, reject) => {
-    	    function getRandomNumber() {
-    	        const value = Math.random();
+   let who = 'Svelte';
 
-                if (value > 0.5) {
-                    resolve(value);
-                } else {
-                    reject(new Error(`Value too small ... ${value}`));
-                }
-    	    }
-
-	        setTimeout(getRandomNumber, seconds * 1000);
-	    });
-	}
-
-	function handleClick() {
-		promise = getRandomValueAfterSnoozing(1);
-	}
+   $: greeting = `Hello, ${who}!`;
 </script>
 
-<button on:click={handleClick}>
-	generate random number
-</button>
+<NameInput bind:name={who} />
+<br/>
+<b>{greeting}</b>
+```
 
-{#await promise}
-	<p>Waiting...</p>
-{:then number}
-	<p>Value is {number}</p>
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
+So, the initial value the child receives for **name** is the value in **who** and, as the child updates its **name** property, **who** will be updated and cause the parent HTML to re-render appropriately.
+
+```html
+<script>
+    export let name = '';
+</script>
+
+<div>
+    Name: <input bind:value={name} />
+</div>
 
 ```
 
