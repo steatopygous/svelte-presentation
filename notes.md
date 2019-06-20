@@ -1,33 +1,51 @@
-#Parent-Child Property Bindings
+#onMount()
 
-Just as we can bind to properties of built-in HTML elements like **<input>**, we can do the same for custom components.
+Svelte has a similar set of lifecycle methods to React.  The one that's likely to be used most often is **onMount()**, which is executed after a component's initial render.
 
-In the following code, we are binding the property **who** of <App> to the property **name** of the child component.
+In the following, we start with an empty array of photo items.  The onMount() initiates a call to the JSON placeholder site, to retrieve 10 random images and captions.
 
-```html
-<script>
-   import NameInput from './components/name-input.svelte'
-
-   let who = 'Svelte';
-
-   $: greeting = `Hello, ${who}!`;
-</script>
-
-<NameInput bind:name={who} />
-<br/>
-<b>{greeting}</b>
-```
-
-So, the initial value the child receives for **name** is the value in **who** and, as the child updates its **name** property, **who** will be updated and cause the parent HTML to re-render appropriately.
+Note another convenience that Svelte supplies.  If the source of a **{#each}** is empty then the **{:else}** content is rendered instead, in this case "Loading...".
 
 ```html
 <script>
-    export let name = '';
+	import { onMount } from 'svelte';
+
+	let photos = [];
+
+	onMount(async () => {
+	  const url = `https://jsonplaceholder.typicode.com/photos?_limit=10`;
+		const res = await fetch(url);
+
+		photos = await res.json();
+	});
 </script>
 
-<div>
-    Name: <input bind:value={name} />
+<h1>Photo album</h1>
+
+<div class="photos">
+	{#each photos as photo}
+		<figure>
+			<img src={photo.thumbnailUrl} alt={photo.title}>
+			<figcaption>{photo.title}</figcaption>
+		</figure>
+	{:else}
+		<p>Loading...</p>
+	{/each}
 </div>
+
+<style>
+	.photos {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-gap: 8px;
+	}
+
+	figure, img {
+		width: 100%;
+		margin: 0;
+	}
+</style>
 
 ```
 
