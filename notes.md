@@ -4,7 +4,9 @@ Svelte has a similar set of lifecycle methods to React.  The one that's likely t
 
 In the following, we start with an empty array of photo items.  The onMount() initiates a call to the JSON placeholder site, to retrieve 10 random images and captions.
 
-Note another convenience that Svelte supplies.  If the source of a **{#each}** is empty then the **{:else}** content is rendered instead, in this case "Loading...".
+Another convenience that Svelte supplies, used here, is that an **{#each}** can have an **{:else}** clause that's rendered when the collection is empty.  It saves having to nest the {#each} inside an {#if photos.length === 0} in this case, making the code a little easier to read.
+
+If onMount() returns a function, that will be called when the component is destroyed.
 
 ```html
 <script>

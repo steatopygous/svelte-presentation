@@ -14,10 +14,10 @@
 <h1>Photo album</h1>
 
 <div class="photos">
-	{#each photos as photo}
+	{#each photos as { thumbnailUrl, title }}
 		<figure>
-			<img src={photo.thumbnailUrl} alt={photo.title}>
-			<figcaption>{photo.title}</figcaption>
+			<img src={thumbnailUrl} alt={title}>
+			<figcaption>{title}</figcaption>
 		</figure>
 	{:else}
 		<p>Loading...</p>
