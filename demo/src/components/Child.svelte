@@ -11,4 +11,3 @@
 </script>
 
 <button on:click={askQuestion}>{name}: Are we there yet?</button>
-<br/>

@@ -1,5 +1,5 @@
 <script>
-    import Parent from './components/parent.svelte';
+    import Parent from './components/Parent.svelte';
 </script>
 
 <Parent />
