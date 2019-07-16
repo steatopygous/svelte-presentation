@@ -1,4 +1,7 @@
 <script>
+    import Hello from './components/Hello.svelte';
+    import Goodbye from './components/Goodbye.svelte';
+
 	export let name;
 </script>
 
@@ -8,4 +11,5 @@
 	}
 </style>
 
-<h1>Hello {name}!</h1>
+<Hello {name} />
+<Goodbye {name} />

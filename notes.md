@@ -2,11 +2,11 @@
 
 ###Clone An Empty Svelte Repository
 
-npx degit sveltejs/template demo`
+npx degit sveltejs/template demo
 
 ###Building The Application
 
-The default template uses **rollup** for building, but there are variants for webpack and parcel.
+The default Svelte template uses **rollup** for building, but there are variants for webpack and parcel.
 
 Here's the **package.json** file.
 
@@ -54,8 +54,9 @@ import App from './App.svelte';
 
 const app = new App({
 	target: document.body,
+
 	props: {
-		name: 'world'
+		name: 'Svelte'
 	}
 });
 
@@ -64,7 +65,7 @@ export default app;
 
 The **target** field specifies where in the HTML the <App> component will be mounted.  The default is to replace the entire <body>, but you can use **document.querySelector()** to mount at a specific location.
 
-The **props** field provides the properties for the top-level tag. So, the code here will effectively insert <App name="world"> into the body of our HTML.
+The **props** field provides the properties for the top-level tag. So, the code here will effectively insert <App name="Svelte"> into the body of our HTML.
 
 ### Components
 
@@ -85,17 +86,17 @@ Note that we're importing **App** from **App.svelte**; this is our first compone
 
 ```
 
-Note how, like Vue, a Svelte component provides the entire definition of the component within a single file: HTML, CSS and JavaScript.
+Note that a Svelte component provides the entire definition of the component within a single file: HTML, CSS and JavaScript.  The sections can be in any order.
 
 ### Properties
 
-Any variable that is defined using **export let** becomes a property, that can be set by the HTML that references the component.  In this case, the initialisation code in **main.js** passes a value of "**world**" for the single property **name**.
+Any variable that is defined using **export let** becomes a property, that can be set by the HTML that references the component.  In this case, the initialisation code in **main.js** passes a value of "**Svelte**" for the single property **name**.
 
 ### Styling
 
-Svelte automatically adds a hash to CSS classes defined within in a component, so they do not leak out; neither into HTML that references the component, nor to any other components.
+Svelte automatically adds a hash to CSS classes defined within in a component, so styles do not leak out; neither into HTML that references the component, nor to any other components.
 
 ### Templating
 
-Svelte uses single braces... eg **{name}** here... to reference variable values, which could be properties passed in or other variables defined within any <script> tags in the component's code.
+Svelte uses single braces... eg **{name}** ... to reference variable values, which could be properties passed in or other variables defined within the <script> tag.
 
