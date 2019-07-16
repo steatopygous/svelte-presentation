@@ -1,6 +1,20 @@
 <script>
-    import { count } from '../stores';
+    import { count, doubled } from '../stores';
 </script>
 
-<span>{$count}</span>
+<span class="counter">{$count}</span>
+<span class="doubled">{$doubled}</span>
 
+<style>
+    span {
+        padding: 5px;
+    }
+
+    .counter {
+        color: red;
+    }
+
+    .doubled {
+        color: blue;
+    }
+</style>
