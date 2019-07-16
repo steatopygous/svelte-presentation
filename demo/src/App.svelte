@@ -3,27 +3,27 @@
 
 	async function getRandomValueAfterSnoozing(seconds) {
 	    return new Promise((resolve, reject) => {
+	        setTimeout(getRandomNumber, seconds * 1000);
+
     	    function getRandomNumber() {
     	        const value = Math.random();
 
-                if (value > 0.5) {
+                if (value >= 0.5) {
                     resolve(value);
                 } else {
                     reject(new Error(`Value too small ... ${value}`));
                 }
     	    }
-
-	        setTimeout(getRandomNumber, seconds * 1000);
 	    });
 	}
 
-	function handleClick() {
+	function regenerate() {
 		promise = getRandomValueAfterSnoozing(1);
 	}
 </script>
 
-<button on:click={handleClick}>
-	generate random number
+<button on:click={regenerate}>
+	Generate New Number
 </button>
 
 {#await promise}

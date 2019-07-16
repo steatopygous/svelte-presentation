@@ -24,13 +24,13 @@ In the following code, the HTML inside the **{#await}** block is rendered while 
 	    });
 	}
 
-	function handleClick() {
+	function regenerate() {
 		promise = getRandomValueAfterSnoozing(1);
 	}
 </script>
 
-<button on:click={handleClick}>
-	generate random number
+<button on:click={regenerate}>
+	Generate New Number
 </button>
 
 {#await promise}
