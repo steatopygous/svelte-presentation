@@ -1,6 +1,6 @@
 <script>
-    import { counter } from './store';
+    import { count } from '../stores';
 </script>
 
-<span>{$counter}</span>
+<span>{$count}</span>
 

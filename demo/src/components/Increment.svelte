@@ -1,5 +1,5 @@
 <script>
-    import { counter } from './store';
+    import { count } from '../stores';
 </script>
 
-<button on:click={() => $counter++}>+</button>
+<button on:click={() => $count++}>+</button>
