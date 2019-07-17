@@ -15,7 +15,7 @@
 
 <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
 	{#if visible}
-		<path transition:draw="{{duration: 3000, delay: 200, easing: quintOut}}"
+		<path
 					d="M2 1 h1 v1 h1 v1 h-1 v1 h-1 v-1 h-1 v-1 h1 z"
 					fill="none"
 					stroke="blue"
@@ -24,3 +24,5 @@
 		/>
 	{/if}
 </svg>
+
+<!-- transition:draw="{{duration: 3000, delay: 200, easing: quintOut}}" -->
