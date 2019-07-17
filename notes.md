@@ -1,120 +1,58 @@
 #Dynamic Rendering
 
-The Svelte approach to generating dynamic HTML is similar to Angular's, in that it uses special syntax, as opposed to JavaScript code.
+Svelte's approach to generating dynamic HTML is similar to Angular's; it uses some special syntax, as opposed to pure JavaScript code.
 
-However, rather than adding pseudo properties to the HTML, it uses a separate syntax that separates things a bit more cleanly.
-
-### Conditional Code
-
-To have HTML rendered based on data, we use code like the following:
+However, rather than adding pseudo properties to HTML tags, it separates the conditional code from the markup.
 
 ```javascript
 <script>
     let framework = '';
 </script>
 
-<div>
-    <span>
+<div class="container">
+    <div>
         {#if framework === ''}
-            What web framework do you use?
-        {:else}
-            {framework}, eh?
-            {#if framework === 'Elm'}
-              Nirvana!
-            {:else if framework === 'Svelte'}
-              You must enjoy your work.
-            {:else}
-              Looks like you are happy to work hard :-).
-          {/if}
+            What's your web framework of choice?
+        {:else if framework === 'Angular'}
+            I prefer my frameworks to have a few curves.
+        {:else if framework === 'React'}
+            Looks like you've been hooked.
+        {:else if framework === 'Svelte'}
+            You're obviously a lean, mean coding machine!
+        {:else if framework === 'Vue'}
+            For coders who can't spell.
         {/if}
-    </span>
+    </div>
 </div>
-<br/>
-
-<div>
-    <button on:click={() => framework='Svelte'}>Svelte</button>
-    <button on:click={() => framework='React'}>React</button>
-    <button on:click={() => framework='Elm'}>Elm</button>
-</div>
-
- 
 ```
 
 ### Loops
 
-Svelte provides an **{#each}** construct for generating separate elements for each value in a collection. For example, let's clean up the set of buttons above a little:
+Svelte provides an **{#each ... as ...}** construct for generating separate elements for each value in a collection. For example, let's clean up the set of buttons above a little:
 
 ```javascript
 <script>
-  const frameworks = ['Angular', 'React', 'Svelte', 'Elm'];
-  let framework = '';
+	  let frameworks = [
+      { name: 'Angular', creator: 'Adam Abrons'  },
+      { name: 'React',   creator: 'Jordan Walke' },
+      { name: 'Vue',     creator: 'Evan You'     },
+      { name: 'Svelte',  creator: 'Rich Harris'  }
+    ];
 </script>
 
-<div>
-  {#each frameworks as f}
-      <button on:click={() => framework = f}>{f}</button>
-  {/each}
-</div>
-
+{#each frameworks as f}
+    <button on:click={() => framework = f.name}>{f.name}</button>
+{/each}
 ```
 
-### Conditional CSS
+Items can be destructured, where required:
 
-The syntax **class:name=condition** allows us to add classes to an element dynamically.  For example, in the following HTML, the **nice** class would be added whenever the value of **behaviour** is "Nice".  The **naughty** class would be added whenever behaviour *isn't* "Nice".
-
-Note the shortcut when giving the CSS class the same name as the predicate.  We don't need to say **class:nice={nice}**, just **class:nice**.
-
-```html
+```javascript
 <script>
-    let behaviour = '';
-
-    $: behaviourText = behaviour.toLowerCase();
-    $: nice = behaviour == 'Nice';
-    $: behaviourClass = nice ? 'nice' : 'naughty';
 </script>
 
-<style>
-    .nice    { color: green; }
-    .naughty { color: red;   }
-</style>
-
-<div>
-    {#if behaviour === ''}
-        Have you been naughty or nice this year?
-    {:else}
-        You were <span class:nice class:naughty={!nice}>{behaviourText}.</span>
-        Really <span class={behaviourClass}>{behaviourText}!</span>
-    {/if}
-</div>
-
-<br/>
-
-<div>
-    <button on:click={() => behaviour = 'Naughty'}>Naughty</button>
-    <button on:click={() => behaviour = 'Nice'}>Nice</button>
-</div>
-```
-
-You may have noticed the weird syntax "**$: behaviourText =…**".  This is actually normal JavaScript; "**label:** ..." defines a label for a line of code; you could jump to that line using **break label;**" or "**continue label**;".  However, it's something that's rarely used.
-
-So, the Svelte compiler coopts it to mean "*This variable is a derived value that should be recalculated if anything on the right hand side changes.*"
-
-So, whenever we update the value of **behaviour**, this assignment will be re-executed and any markup that references **behaviourText** will be re-rendered.
-
-Given that the classes **naughty** and **nice** are mutually exclusive, it's a little messy to reference them both in the span; it would be nicer if we could just decide which one is required. We can use variable interpolation to achieve this:
-
-```html
-<script>
-    let behaviour = '';
-
-    $: behaviourText = behaviour.toLowerCase();
-    $: nice = behaviour == 'Nice';
-    $: behaviourClass = nice ? 'nice' : 'naughty';
-</script>
-
-<div>
-  You were <span class={behaviourClass}>{behaviourText}.</span>
-</div>
-
+{#each frameworks as { name, creator }}
+   <div>{creator} created {name}</div>
+{/each}
 ```
 
