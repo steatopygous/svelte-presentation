@@ -6,8 +6,9 @@
 </script>
 
 <style>
-    .nice    { color: green; }
-    .naughty { color: red;   }
+    *        { font-size: 24px;  }
+    .nice    { color:     green; }
+    .naughty { color:     red;   }
 </style>
 
 <div>
