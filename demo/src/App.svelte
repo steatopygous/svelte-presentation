@@ -18,7 +18,7 @@
         {:else if framework === 'React'}
             Looks like you've been hooked.
         {:else if framework === 'Vue'}
-            For coders who can't spell.
+            For developers who can't spell.
         {:else if framework === 'Svelte'}
           You're obviously a lean, mean coding machine!
         {/if}
@@ -42,6 +42,10 @@
 </div>
 
 <style>
+    * {
+        font-size: 24px;
+    }
+
     .container {
         display: flex;
         flex-direction: column;
