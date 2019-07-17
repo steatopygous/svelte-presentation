@@ -1,9 +1,8 @@
 <script>
-    import { count, doubled } from '../stores';
+    import { count } from '../stores';
 </script>
 
 <span class="counter">{$count}</span>
-<span class="doubled">{$doubled}</span>
 
 <style>
     span {
@@ -12,9 +11,5 @@
 
     .counter {
         color: red;
-    }
-
-    .doubled {
-        color: blue;
     }
 </style>

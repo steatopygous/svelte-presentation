@@ -2,4 +2,4 @@
     import { count } from '../stores';
 </script>
 
-<button on:click={() => $count -= 1}> - </button>
+<button on:click={count.decrement}> - </button>
