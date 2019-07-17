@@ -5,16 +5,13 @@
 <div>
     <span>
         {#if framework === ''}
-            What web framework do you use?
-        {:else}
-            {framework}, eh?
-            {#if framework === 'Elm'}
-              Nirvana!
-            {:else if framework === 'Svelte'}
-              You must enjoy your work.
-            {:else}
-              Looks like you are happy to work hard :-).
-          {/if}
+          What web framework do you use?
+        {:else if framework === 'React'}
+          I guess you've been hooked.
+        {:else if framework === 'Svelte'}
+          Keeping it lean!
+        {:else if framework === 'Elm'}
+          Nirvana!
         {/if}
     </span>
 </div>

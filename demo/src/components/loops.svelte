@@ -8,14 +8,15 @@
         {#if framework === ''}
             What web framework do you use?
         {:else}
-            {framework}, eh?
-            {#if framework === 'Elm'}
-              Nirvana!
+            {#if framework === 'Angular'}
+              You have my deepest sympathy.
+            {:else if framework === 'React'}
+              You obviously have a good work ethic.
             {:else if framework === 'Svelte'}
-              You must enjoy your work.
+              You must enjoy your job.
             {:else}
-              Looks like you are happy to work hard :-).
-          {/if}
+              Nirvana!
+            {/if}
         {/if}
     </span>
 </div>

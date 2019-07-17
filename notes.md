@@ -16,28 +16,24 @@ To have HTML rendered based on data, we use code like the following:
 <div>
     <span>
         {#if framework === ''}
-            What web framework do you use?
-        {:else}
-            {framework}, eh?
-            {#if framework === 'Elm'}
-              Nirvana!
-            {:else if framework === 'Svelte'}
-              You must enjoy your work.
-            {:else}
-              Looks like you are happy to work hard :-).
-          {/if}
+          What web framework do you use?
+        {:else if framework === 'React'}
+          I guess you've been hooked.
+        {:else if framework === 'Svelte'}
+          Keeping it lean!
+        {:else if framework === 'Elm'}
+          Nirvana!
         {/if}
     </span>
 </div>
+
 <br/>
 
 <div>
-    <button on:click={() => framework='Svelte'}>Svelte</button>
     <button on:click={() => framework='React'}>React</button>
+    <button on:click={() => framework='Svelte'}>Svelte</button>
     <button on:click={() => framework='Elm'}>Elm</button>
 </div>
-
- 
 ```
 
 ### Loops
@@ -60,7 +56,9 @@ Svelte provides an **{#each}** construct for generating separate elements for ea
 
 ### Conditional CSS
 
-The syntax **class:name=condition** allows us to add classes to an element dynamically.  For example, in the following HTML, the **nice** class would be added whenever the value of **behaviour** is "Nice".  The **naughty** class would be added whenever behaviour *isn't* "Nice".
+There are two ways to add a CSS class dynamically.
+
+The syntax **class:name={condition}** allows us to add classes based on a boolean value.  For example, in the following HTML, the **nice** class would be added whenever the value of **behaviour** is "Nice".  The **naughty** class would be added whenever behaviour *isn't* "Nice".
 
 Note the shortcut when giving the CSS class the same name as the predicate.  We don't need to say **class:nice={nice}**, just **class:nice**.
 
