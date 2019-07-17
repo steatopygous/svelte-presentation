@@ -1,4 +1,4 @@
 .DS_Store
 node_modules
-public/bundle.*
+demo/public/bundle.*
 /*.idea
