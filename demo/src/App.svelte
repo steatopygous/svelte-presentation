@@ -1,15 +1,27 @@
 <script>
-    import Hello from './components/Hello.svelte';
-    import Goodbye from './components/Goodbye.svelte';
+    import { Router, Link, Route } from "svelte-routing";
+    import Frameworks from './components/Frameworks.svelte';
+    import Angular from './components/Angular.svelte';
+    import React from './components/React.svelte';
+    import Svelte from './components/Svelte.svelte';
+
+    export let url = "";
 
 	export let name;
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
+<Router url="{url}">
+  <nav>
+    <Link to="/">Frameworks</Link>
+    <Link to="angular">Angular</Link>
+    <Link to="react">React</Link>
+    <Link to="svelte">Svelte</Link>
+  </nav>
 
-<Hello {name} />
-<Goodbye {name} />
+  <div>
+    <Route path="angular" component={Angular} />
+    <Route path="react" component={React} />
+    <Route path="svelte" component={Svelte} />
+    <Route path="/"><Frameworks /></Route>
+  </div>
+</Router>
