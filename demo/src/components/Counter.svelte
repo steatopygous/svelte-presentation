@@ -12,4 +12,8 @@
     .counter {
         color: red;
     }
+
+    * {
+        font-size: 48px;
+    }
 </style>

@@ -1,8 +1,8 @@
 #Custom Stores
 
-The only requirement for an object to be a store is that it provides a **subscribe()** method.  So, we can create custom stores that encapsulate business logic, by defining a set of methods that form the interface hrough which the state is modified.
+The only requirement for an object to be a store is that it provides a **subscribe()** method.  So, we can create custom stores that encapsulate business logic, by defining a set of methods that form the interface through which the state is updated.
 
-For example, we could model a counter that can only be incremented and decremented in multiples of five, using something like the following, where the writable and its update() method are hidden inside the scope of the **createCounter()** function.
+For example, we could model a counter that can only be incremented and decremented in multiples of five, using something like the following, where the writable store and its **update()** method are hidden inside the scope of the **createCounter()** function.
 
 ```javascript
 import { writable } from 'svelte/store';
@@ -21,7 +21,7 @@ function createCount() {
 }
 ```
 
-The <Increment> and <Decrement> components from the previous example can be implemented as:
+The <Increment> and <Decrement> components from the previous example can be implemented by referencing the provided functions:
 
 ```javascript
 <script>

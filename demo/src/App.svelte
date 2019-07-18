@@ -9,3 +9,9 @@
     <Counter />
     <Increment />
 </div>
+
+<style>
+    * {
+        font-size: 48px;
+    }
+</style>
