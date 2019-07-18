@@ -9,7 +9,7 @@
 	export let data;
 
 	let chart;
-	let distortionFactor = 36;
+	let distortionFactor = 11;
 
 	$: distortedData = distort(data, distortionFactor);
 	$: createSvg(distortedData);
@@ -19,7 +19,7 @@
 	        return;
 	    }
 
-	    const factor = distortionFactor / 100;
+	    const factor = (distortionFactor * 36 / 11) / 100;
 	    const keys = Object.keys(data);
 	    const distorted = {};
 
@@ -132,8 +132,11 @@
 <div class="container">
     <h2>{title}</h2>
 
-    <input type="range" min="0" max="36" bind:value={distortionFactor} class="slider"><br/>
-    <span class="distortion">Reality Distortion</span>
+    <input type="range" min="0" max="11" bind:value={distortionFactor} class="slider">
+    {distortionFactor}
+    <br/>
+
+    <span class="distortion">Reality Distortion Field</span>
 
     <div bind:this={chart} class="chart" />
 </div>

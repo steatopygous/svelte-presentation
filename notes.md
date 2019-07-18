@@ -1,6 +1,6 @@
 #Using NPM Modules
 
-The following app uses a **PieChart** component implemented using D3 to display the results of a totally scientific investigation into the happiness of front-end developers when using various frameworks :wink:.
+The following app uses a **PieChart** component, implemented using D3, to display the results of a totally scientific investigation into the happiness of front-end developers when using various frameworks :wink:.
 
 ```javascript
 <script>
@@ -13,7 +13,7 @@ The following app uses a **PieChart** component implemented using D3 to display 
 	};
 </script>
 
-<PieChart title="Developer Happiness" {data} />
+<PieChart title="Developer Happiness" {data} favourite="Svelte"/>
 
 
 ```
