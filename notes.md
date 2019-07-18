@@ -10,17 +10,17 @@ In the following code, the HTML inside the **{#await}** block is rendered while 
 
 	async function getRandomValueAfterSnoozing(seconds) {
 	    return new Promise((resolve, reject) => {
-    	    function getRandomNumber() {
-    	        const value = Math.random();
+	        setTimeout(getRandomNumber, seconds * 1000);
 
-                if (value > 0.5) {
+    	    function getRandomNumber() {
+    	        const value = ~~(10 * Math.random());
+
+                if (value >= 5) {
                     resolve(value);
                 } else {
-                    reject(new Error(`Value too small ... ${value}`));
+                    reject(new Error(`Received a dud... ${value}`));
                 }
     	    }
-
-	        setTimeout(getRandomNumber, seconds * 1000);
 	    });
 	}
 
@@ -29,17 +29,24 @@ In the following code, the HTML inside the **{#await}** block is rendered while 
 	}
 </script>
 
+{#await promise}
+	<p>Thinking...</p>
+{:then number}
+	<p>Your lucky number is... {number}</p>
+{:catch error}
+	<p class="error">{error.message}</p>
+{/await}
+
 <button on:click={regenerate}>
-	Generate New Number
+	New Number
 </button>
 
-{#await promise}
-	<p>Waiting...</p>
-{:then number}
-	<p>Value is {number}</p>
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
 
 ```
 
