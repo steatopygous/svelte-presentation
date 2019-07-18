@@ -41,4 +41,4 @@ and
 <button on:click={count.decrement}> - </button>
 ```
 
-Note that if we were to export **createCount()**, rather than a count instance, we could construct any number of counters.
+Note that if we were to export **createCount()**, rather than a single instance created by it, we could construct any number of counters that would function independently.
