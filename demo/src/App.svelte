@@ -11,7 +11,7 @@
 	});
 </script>
 
-<h1>Photo album</h1>
+<h1>Some Nice Colour Swatches</h1>
 
 <div class="photos">
 	{#each photos as { thumbnailUrl, title }}
@@ -36,4 +36,8 @@
 		width: 100%;
 		margin: 0;
 	}
+
+    * {
+        font-size: 24px;
+    }
 </style>
