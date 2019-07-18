@@ -1,5 +1,5 @@
 <script>
-	import { draw } from 'svelte/transition';
+	import { fade, fly, draw } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
 	let visible = false;
@@ -15,7 +15,7 @@
 
 <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
 	{#if visible}
-		<path
+		<path in:fly={{ y: 200 }} out:fade={{ duration: 750 }}
 					d="M2 1 h1 v1 h1 v1 h-1 v1 h-1 v-1 h-1 v-1 h1 z"
 					fill="none"
 					stroke="blue"
@@ -25,4 +25,4 @@
 	{/if}
 </svg>
 
-<!-- transition:draw="{{duration: 3000, delay: 200, easing: quintOut}}" -->
+<!-- transition:draw={{duration: 3000, delay: 200, easing: quintOut}} -->

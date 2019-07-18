@@ -5,14 +5,14 @@ One nice feature that's built into Svelte is CSS based transitions.  A few are p
 The following are usable with zero coding:
 
 - **fade**,  which fades items in and out
-- **fly**, which displays an item a distance away and then animates it to its final location
+- **fly**, which displays an item some distance away and then animates it to its final location
 - **slide**, which makes the item slide in and out of view
 - **scale**, which zooms teh item
 - **draw**, which animates the stroke of an SVG
 
 Here's an example that draws a cross when the  button is pressed:
 
-```javascript
+```html
 <script>
 	import { draw } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
