@@ -1,48 +1,24 @@
-#Using NPM Modules
-
-The following app uses a **PieChart** component implemented using D3 to display the results of a totally scientific investigation into the happiness of front-end developers when using various frameworks :wink:.
-
-```javascript
-<script>
-	import PieChart from './components/PieChart.svelte';
-
-	const data = {
-	    Angular: 10,
-	    React:   35,
-	    Svelte:  55,
-	};
-</script>
-
-<PieChart title="Developer Happiness" {data} />
-
-
-```
-
-Here are the gory details.  Don't worry, I didn't write this, just wrapped it up in a Svelte component.
-
-```javascript
 <script>
 	import { onMount } from 'svelte';
 
 	import * as d3 from 'd3';
 
-  export let size;
+	export let size = 650;
 	export let title;
 	export let data;
 
 	let chart;
 
 	onMount(() => {
-        const width  = size;
+        const width = size;
         const height = size;
         const margin = 40;
 
-        // The radius of the pie plot is half the width or half the height, whichever
-        // is smaller. We subtract a bit for the margin.
+        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
 
         const radius = Math.min(width, height) / 2 - margin
 
-        // Append the <svg> object to the div with class 'chart'
+        // append the svg object to the div called 'my_dataviz'
 
         const svg = d3.select(".chart")
           .append("svg")
@@ -64,7 +40,7 @@ Here are the gory details.  Don't worry, I didn't write this, just wrapped it up
 
         const data_ready = pie(d3.entries(data));
 
-        // Now we know that group A goes from 0 degrees to x degrees and so on.
+        // Now I know that group A goes from 0 degrees to x degrees and so on.
 
         // Shape helper to build arcs:
 
@@ -72,7 +48,7 @@ Here are the gory details.  Don't worry, I didn't write this, just wrapped it up
           .innerRadius(0)
           .outerRadius(radius);
 
-        // Build the pie chart
+        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
 
         svg
           .selectAll('mySlices')
@@ -85,18 +61,17 @@ Here are the gory details.  Don't worry, I didn't write this, just wrapped it up
             .style("stroke-width", "2px")
             .style("opacity", 0.7);
 
-        // Add the annotations, using the centroid() method to get the best coordinates
-
+        // Now add the annotation. Use the centroid method to get the best coordinates
         svg
           .selectAll('mySlices')
           .data(data_ready)
           .enter()
           .append('text')
           .text(function(d){ return d.data.key})
-          .attr("transform", d => "translate(" + arcGenerator.centroid(d) + ")")
+          .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
           .style("text-anchor", "middle")
-    			.style("font-weight", "bold")
-          .style("font-size", 24);
+          .style("font-size", 24)
+          .style("font-weight", "bold");
 	});
 </script>
 
@@ -111,5 +86,4 @@ Here are the gory details.  Don't worry, I didn't write this, just wrapped it up
 
     <div bind:this={chart} class="chart" />
 </div>
-```
 

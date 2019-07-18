@@ -1,15 +1,12 @@
 <script>
-    import Hello from './components/Hello.svelte';
-    import Goodbye from './components/Goodbye.svelte';
+	import PieChart from './components/PieChart.svelte';
 
-	export let name;
+	const data = {
+	    Angular: 10,
+	    React:   35,
+	    Svelte:  55,
+	};
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
+<PieChart title="Developer Happiness" {data} size="800"/>
 
-<Hello {name} />
-<Goodbye {name} />
