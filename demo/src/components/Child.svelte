@@ -11,3 +11,10 @@
 </script>
 
 <button on:click={askQuestion}>{name}: Are we there yet?</button>
+
+<style>
+    * {
+        font-size: 48px;
+        color: blue;
+    }
+</style>

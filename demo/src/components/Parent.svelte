@@ -8,7 +8,15 @@
     }
 </script>
 
+
 <Child name="Mary" on:areWeThereYet={reply} />
 <Child name="Jim" on:areWeThereYet={reply} />
 
 <div>{answer}</div>
+
+<style>
+    * {
+        font-size: 48px;
+        color: red;
+    }
+</style>
