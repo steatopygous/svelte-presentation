@@ -8,5 +8,5 @@
 	};
 </script>
 
-<PieChart title="Developer Happiness" {data} size="800"/>
+<PieChart title="Developer Happiness" {data} size="700"/>
 
