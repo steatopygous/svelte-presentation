@@ -13,3 +13,9 @@
         <b>{greeting}</b>
     {/if}
 </div>
+
+<style>
+    * {
+        font-size: 48px;
+    }
+</style>

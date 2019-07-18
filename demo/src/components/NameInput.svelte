@@ -3,5 +3,5 @@
 </script>
 
 <div>
-    Name: <input bind:value={name} placeholder="Enter your name" />
+    <input bind:value={name} placeholder="Enter your name" />
 </div>
