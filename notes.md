@@ -71,7 +71,7 @@ The **props** field provides the properties for the top-level tag. So, the code 
 
 Note that we're importing **App** from **App.svelte**; this is our first component.  The  contents of that file are:
 
-```javascript
+```html
 <script>
 	export let name;
 </script>
