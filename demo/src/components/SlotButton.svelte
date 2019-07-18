@@ -7,6 +7,11 @@
     button {
         background-color: blue;
         margin: 2px;
+        width: 180px;
+    }
+
+    * {
+        font-size: 48px;
     }
 </style>
 

@@ -7,25 +7,17 @@
         { name: 'Svelte',  colour: 'yellow' },
         { name: 'Vue',     colour: 'orange' }
     ];
-
-    function clicked() {
-        alert(`Please don't click that button again!`);
-    }
 </script>
 
 <style>
-    span {
-        font-size: 24px;
-    }
-
-    .red { color: red; }
-    .green { color: lightgreen; }
-    .yellow { color: yellow; }
-    .orange { color: orange; }
+    .red    { color: red;        }
+    .green  { color: lightgreen; }
+    .yellow { color: yellow;     }
+    .orange { color: orange;     }
 </style>
 
 {#each frameworks as { name, colour }}
-    <SlotButton on:slotClicked={clicked}>
+    <SlotButton on:slotClicked={() => alert(`Don't click that button again!`)}>
         <span class={colour}>{name}</span>
     </SlotButton>
 {/each}
