@@ -16,7 +16,7 @@ Note that this is local to the component, and would not change a variable in the
 
 Any event emitted by an HTML element can be bound to a handler that is a normal JavaScript function (*a la*  vanilla **addEventListener()**).  Here's how we might add a button to clear the input field.
 
-```javascript
+```html
 <button on:click={clearName}>Clear</button>
 ```
 
