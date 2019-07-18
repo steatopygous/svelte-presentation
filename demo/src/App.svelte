@@ -2,11 +2,11 @@
     let behaviour = '';
 
     $: behaviourText = behaviour.toLowerCase();
-    $: nice = behaviour == 'Nice';
+    $: nice = behaviourText == 'nice';
 </script>
 
 <style>
-    *        { font-size: 24px;  }
+    *        { font-size: 48px;  }
     .nice    { color:     green; }
     .naughty { color:     red;   }
 </style>

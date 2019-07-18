@@ -8,8 +8,6 @@ The syntax **class:name={condition}** specifies that the given class should be i
 
  For example, in the following HTML, the **nice** class would be added whenever the value of **behaviour** is "Nice".  The **naughty** class would be added whenever behaviour *isn't* "Nice".
 
-Note the shortcut when giving the CSS class the same name as the predicate.  We don't need to say **class:nice={nice}**, just **class:nice**.
-
 ```html
 <script>
     let behaviour = '';
@@ -39,11 +37,35 @@ Note the shortcut when giving the CSS class the same name as the predicate.  We 
 </div>
 ```
 
-You may have noticed the weird syntax "**$: behaviourText =…**".  This is normal JavaScript; "**toHere:** ..." labels a line of code.  While it's seldom necessary, one use case is where you have nested loops that you want to abort.  You can jump directly to that line using "**break toHere**" or "**continue toHere**".
+### Shortcuts
+
+Note the shortcut when the CSS class name is the same as the variable.  We don't need to say **class:nice={nice}**, simply **class:nice**.  Similar shorthand can be used for any property of a tag whose value is in a variable of the same name , eg **<Person {name} {age} />**.
+
+You can also spread the contents of an object to provide a tag's properties, eg 
+
+```html
+<script>
+  import Framework from './components/Framework.svelte';
+
+  let svelte = {
+    name: 'Svelte',
+    version: 3,
+    creator: 'Rich Harris'
+  }
+</script>
+
+<Framework {...svelte} />
+```
+
+### Reactive Data
+
+You may have noticed the  syntax "**$: behaviourText =…**".  This is normal JavaScript; something like "**toHere:** ..." is a label for a line of code.  While it's very seldom required, one use case is where you have nested loops that you want to abort.  You could jump directly to that line using "**break toHere**" or "**continue toHere**".
 
 The Svelte compiler coopts the specific label **$** to mean "*This variable is a derived value that should be recalculated if anything on the right hand side changes.*"
 
-So, in the code above, when clicking one of the buttons updates the value of **behaviour**, the labeled assignment will be re-executed and any markup that references **behaviourText** will be re-rendered.  The value of **nice** will also be recalculated.
+So, in the code above, when clicking one of the buttons updates the value of **behaviour**, the two labeled assignments will be re-executed, causing **behaviourText** and **nice** to be recalculated.  Any markup that references them will be re-rendered.
+
+Note that the order of the two statements isn't actually important.  All updates are performed in topological order, rather than order of appearance on the code. In other words, Svelte keeps track of the fact that **nice** depends on **behaviourText**, so the latter will be updated first.  
 
 ### Specifying A Class Name Dynamically
 
