@@ -1,15 +1,31 @@
 <script>
-    import Hello from './components/Hello.svelte';
-    import Goodbye from './components/Goodbye.svelte';
+    import SlotButton from './components/SlotButton.svelte';
 
-	export let name;
+    const frameworks = [
+        { name: 'Angular', colour: 'red'    },
+        { name: 'React',   colour: 'green'  },
+        { name: 'Svelte',  colour: 'yellow' },
+        { name: 'Vue',     colour: 'orange' }
+    ];
+
+    function clicked() {
+        alert(`Please don't click that button again!`);
+    }
 </script>
 
 <style>
-	h1 {
-		color: purple;
-	}
+    span {
+        font-size: 24px;
+    }
+
+    .red { color: red; }
+    .green { color: lightgreen; }
+    .yellow { color: yellow; }
+    .orange { color: orange; }
 </style>
 
-<Hello {name} />
-<Goodbye {name} />
+{#each frameworks as { name, colour }}
+    <SlotButton on:slotClicked={clicked}>
+        <span class={colour}>{name}</span>
+    </SlotButton>
+{/each}
