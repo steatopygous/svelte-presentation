@@ -2,11 +2,16 @@
 	import PieChart from './components/PieChart.svelte';
 
 	const data = {
-	    Angular: 10,
-	    React:   35,
-	    Svelte:  55,
+	    Angular: 13,
+	    React:   32,
+	    Svelte:  43,
 	};
 </script>
 
-<PieChart title="Developer Happiness" {data} size="700"/>
+<PieChart
+    title="Developer Happiness"
+    size="700"
+    favourite="Svelte"
+    {data}
+/>
 

@@ -4,33 +4,72 @@
 	import * as d3 from 'd3';
 
 	export let size = 650;
+	export let favourite;
 	export let title;
 	export let data;
 
 	let chart;
+	let distortionFactor = 36;
+
+	$: distortedData = distort(data, distortionFactor);
+	$: createSvg(distortedData);
+
+	function distort(data, distortionFactor) {
+	    if (!data) {
+	        return;
+	    }
+
+	    const factor = distortionFactor / 100;
+	    const keys = Object.keys(data);
+	    const distorted = {};
+
+	    for (const key of keys) {
+	        const value = data[key];
+
+	        if (key === favourite) {
+        	    distorted[key] = (1 + factor) * value;
+	        } else {
+        	    distorted[key] = (1 - factor) * value;
+	        }
+	    }
+
+        return distorted;
+	}
+
+	let svg;
 
 	onMount(() => {
+        createSvg(distort(data, distortionFactor));
+	});
+
+	function createSvg(distortedData) {
+	    if (!distortedData) {
+	        return;
+	    }
+
+	    d3.select('svg').remove();
+
+        svg = d3.select(".chart")
+          .append("svg")
+            .attr("width", size)
+            .attr("height", size)
+          .append("g")
+            .attr("transform", "translate(" + size / 2 + "," + size / 2 + ")");
+
         const width = size;
         const height = size;
         const margin = 40;
 
         // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
 
-        const radius = Math.min(width, height) / 2 - margin
+        const radius = Math.min(width, height) / 2 - margin;
 
-        // append the svg object to the div called 'my_dataviz'
-
-        const svg = d3.select(".chart")
-          .append("svg")
-            .attr("width", width)
-            .attr("height", height)
-          .append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        // append the svg object to the div called 'chart'
 
         // Set the color scale
 
         const color = d3.scaleOrdinal()
-          .domain(data)
+          .domain(distortedData)
           .range(d3.schemeSet2);
 
         // Compute the position of each group on the pie:
@@ -38,7 +77,7 @@
         const pie = d3.pie()
           .value(function(d) {return d.value; });
 
-        const data_ready = pie(d3.entries(data));
+        const data_ready = pie(d3.entries(distortedData));
 
         // Now I know that group A goes from 0 degrees to x degrees and so on.
 
@@ -72,17 +111,29 @@
           .style("text-anchor", "middle")
           .style("font-size", 24)
           .style("font-weight", "bold");
-	});
+	}
 </script>
 
 <style>
     .container {
         text-align: center;
     }
+
+    .distortion {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .slider {
+        corner-radius: 5px;
+    }
 </style>
 
 <div class="container">
     <h2>{title}</h2>
+
+    <input type="range" min="0" max="36" bind:value={distortionFactor} class="slider"><br/>
+    <span class="distortion">Reality Distortion</span>
 
     <div bind:this={chart} class="chart" />
 </div>
