@@ -1,11 +1,11 @@
+<h3>Angular</h3>
+
+<div>
+    <em>Which</em> Angular were you looking for?
+</div>
+
 <style>
-	h1 {
+	h3 {
 		color: red;
 	}
 </style>
-
-<h1>Angular</h1>
-
-<div>
-<em>Which</em> Angular were you looking for?
-</div>

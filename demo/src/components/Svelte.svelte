@@ -1,11 +1,11 @@
+<h3>Svelte</h3>
+
+<div>
+    The framework for the more athletic coder!
+</div>
+
 <style>
-	h1 {
+	h3 {
 		color: green;
 	}
 </style>
-
-<h1>Svelte</h1>
-
-<div>
-The framework for lean, mean coders!
-</div>

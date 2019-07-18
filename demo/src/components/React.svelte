@@ -1,11 +1,11 @@
+<h3>React</h3>
+
+<div>
+    It'll get its hooks into you.
+</div>
+
 <style>
-	h1 {
+	h3 {
 		color: blue;
 	}
 </style>
-
-<h1>React</h1>
-
-<div>
-It'll get its hooks into you.
-</div>

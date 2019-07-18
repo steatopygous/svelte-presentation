@@ -25,3 +25,9 @@
     <Route path="/"><Frameworks /></Route>
   </div>
 </Router>
+
+<style>
+    * {
+        font-size: 36px;
+    }
+</style>
