@@ -9,4 +9,4 @@
 	}
 </style>
 
-<h1>Goodbye {name}</h1>
+<h1>Bye bye {name}</h1>
