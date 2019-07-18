@@ -66,7 +66,7 @@ To have it go further, the parent component can include an **on:eventX** propert
 
 So, for example, if the <Parent> component above didn't need to handle the **areWeThereYet** event itself, it could simply say
 
-```javascript
+```html
 <Child name="Mary" on:areWeThereYet></Child>
 ```
 
