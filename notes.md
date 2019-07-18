@@ -48,9 +48,6 @@ Svelte provides an **{#each ... as ...}** construct for generating separate elem
 Items can be destructured, where required:
 
 ```javascript
-<script>
-</script>
-
 {#each frameworks as { name, creator }}
    <div>{creator} created {name}</div>
 {/each}
