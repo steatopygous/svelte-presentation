@@ -1,6 +1,6 @@
 #Transitions
 
-One nice feature that's built into Svelte is CSS based transitions.  A few are provided out of the box, along with the ability to create custom ones.
+A nice feature provided by Svelte is built-in support for CSS based transitions.  A few are provided out of the box, along with the ability to create custom ones.
 
 The following are usable with zero coding:
 
@@ -18,7 +18,7 @@ Here's an example that draws a cross when the  button is pressed:
 	import { quintOut } from 'svelte/easing';
 
 	let visible = false;
-	let label = 'Show';
+	let label   = 'Show';
 
 	function toggle() {
 	    label = label === 'Show' ? 'Hide' : 'Show';
