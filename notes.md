@@ -70,9 +70,9 @@ So, for example, if the <Parent> component above didn't need to handle the **are
 <Child name="Mary" on:areWeThereYet></Child>
 ```
 
-and that event would be passed to its parent.
+and that event would be passed to its parents.
 
-If a parent component doesn't have an **on** property for a given event, tht event is simply discarded.
+If a parent component doesn't have an **on** property for a given event, that event is simply discarded.
 
 We will discuss how Svelte approaches non-local state shortly.
 
