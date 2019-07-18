@@ -6,6 +6,8 @@ A store holds a single piece of (potentially complex) data that can be reference
 
 A store can be writeable, or readonly.  The latter is intended for holding data that updates without user interaction, but that require changes to your views as the data updates; for example a clock.
 
+###A Writeable Store
+
 Here's a simple example of a writeable store; a counter that can be read and written from any component that references it. In the file **stores.js**, we would have the following
 
 ```javascript
@@ -44,6 +46,8 @@ function reset() {
 }
 ```
 
+### Shorthand
+
 However, Svelte also provides a more succinct way to work with a store. Prefixing its name with a dollar sign automatically calls update() whenever the value is modified.
 
 ```javascript
@@ -54,6 +58,8 @@ function increment() {
 }
 ```
 
+### Derived Stores
+
 It is possible to create stores that are based on values from other stores:
 
 ```javascript
@@ -62,4 +68,6 @@ import { writable, derived } from 'svelte/store';
 export const count   = writable(0);
 export const doubled = derived(count, count => 2 * count);
 ```
+
+If a derived store depends on more than one other store, we can provide an array for the first argument, and the update function will be passed the values in that order, when any of them changes.
 

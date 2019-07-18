@@ -17,4 +17,8 @@
     .doubled {
         color: blue;
     }
+
+    * {
+        font-size: 48px;
+    }
 </style>
