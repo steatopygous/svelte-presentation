@@ -1,108 +1,45 @@
-#Initialising A Svelte App
+# Resources
 
-###Clone An Empty Svelte Repository
+##The Svelte 3 Tutorial
 
-npx degit sveltejs/template demo
+This repository contains a lot of simple examples that illustrate various aspects of Svelte 3. However, the best place to see a full overview of the functionality it provides is the official tutorial at https://svelte.dev/tutorial/basics.
 
-###Building The Application
+The pages there explain things that you generally want from a framework, and how they're achieved with Svelte 3.  In particular, because it provides a REPL that runs the code, you can play around and see what effect your changes have.
 
-The default Svelte template uses **rollup** for building, but there are variants for webpack and parcel.
+There are various tabs on that site that provide different information:
 
-Here's the **package.json** file.
+- A set of examples https://svelte.dev/examples#hello-world
+- The complete API (although, it's a work in progress) https://svelte.dev/docs
+- A REPL, where you can just try stuff out https://svelte.dev/repl/hello-world
+- The Svelte blog https://svelte.dev/blog
+- An FAQ https://github.com/sveltejs/svelte/wiki/FAQ
+- A link to the Sapper website https://sapper.svelte.dev/
 
-```json
-{
-	"name": "svelte-app",
-  "version": "1.0.0",
-  "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "rollup": "^1.10.1",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-node-resolve": "^4.2.3",
-    "rollup-plugin-svelte": "^5.0.3",
-    "rollup-plugin-terser": "^4.0.4",
-    "svelte": "^3.0.0"
-  },
-  "dependencies": {
-    "sirv-cli": "^0.4.4"
-  },
-  "scripts": {
-    "build": "rollup -c",
-    "autobuild": "rollup -c -w",
-    "dev": "run-p start:dev autobuild",
-    "start": "sirv public --single",
-    "start:dev": "sirv public --single --dev"
-  }
-}
-```
+## Some Excellent Introductory Videos
 
-Note, as mentioned, there is almost nothing in the dependencies section; most packages are in **devDependencies**.  The single **sirv-cli** item imports a static web server, similar to http-server, that provides browser access to the app during development.
+Here are a few videos I think explain the concepts behind Svelte well:
 
-###Running
+- Rich Harris's original introduction of the new version
 
-All we need is an initial **npm i** to install the dependencies and then we can execute **npm run  dev** to watch the source code, rebuilding and live reloading as needed.
+  ​	https://www.youtube.com/watch?v=AdNJ3fydeao&t=11s
 
-Pointing our browser to <http://localhost:5000> will display the app.
+- The same talk, but with a few refinements
 
-### Bootstrapping
+  ​	https://www.youtube.com/watch?v=gJ2P6hGwcgo
 
-The file **main.js** is our starting point.
+- Harry Wolff has a couple of videos where he plays with Svelte and Sapper as a newbie, and one where he interviews Rich
 
-```javascript
-import App from './App.svelte';
+  ​	https://www.youtube.com/watch?v=TPVQ3M9b6CY
 
-const app = new App({
-	target: document.body,
+  ​	https://www.youtube.com/watch?v=RS1GpKxCoIA
 
-	props: {
-		name: 'Svelte'
-	}
-});
+  ​	https://www.youtube.com/watch?v=48gHuY4w0hY
 
-export default app;
-```
+- The **Svelte Master** YouTube channel has been working through each of the pieces, in short videos of just a few minutes each (12 videos at the time of writing)
 
-The **target** field specifies where in the HTML the <App> component will be mounted.  The default is to replace the entire <body>, but you can use **document.querySelector()** to mount at a specific location.
+  ​	https://www.youtube.com/watch?v=cU8ZPBKaEwU&list=PLcjHRSem_cvP440pjw79kB85Z_7Nn8VqZ
 
-The **props** field provides the properties for the top-level tag. So, the code here will effectively insert <App name="Svelte"> into the body of our HTML.
+If you search for "Svelte 3" on YouTube, you'll find a lot more, for example an example of using Svelte with GraphQL https://www.youtube.com/watch?v=WqOLx2yuF3M&t=159s and a half hour crash course https://www.youtube.com/watch?v=uK2RnIzrQ0M.
 
-### Components
 
-Note that we're importing **App** from **App.svelte**; this is our first component.  The  contents of that file are:
-
-```html
-<script>
-    import Hello from './components/Hello.svelte';
-    import Goodbye from './components/Goodbye.svelte';
-
-	export let name;
-</script>
-
-<style>
-	h1 {
-		color: purple;
-		font-size: 40px;
-	}
-</style>
-<h1>Switching Gears...</h1>
-
-<Goodbye name="Virtual DOM" />
-<Hello {name} />
-
-```
-
-Note that a Svelte component provides the entire definition of the component within a single file: HTML, CSS and JavaScript.  The sections can be in any order.
-
-### Properties
-
-Any variable that is defined using **export let** becomes a property, that can be set by the HTML that references the component.  In this case, the initialisation code in **main.js** passes a value of "**Svelte**" for the single property **name**.
-
-### Styling
-
-Svelte automatically adds a hash to CSS classes defined within in a component, so styles do not leak out; neither into HTML that references the component, nor to any other components.
-
-### Templating
-
-Svelte uses single braces... eg **{name}** ... to reference variable values, which could be properties passed in or other variables defined within the <script> tag.
 
