@@ -1,6 +1,6 @@
 # Resources
 
-##A Short Svelte 3 Tutorial
+##  A Short Svelte 3 Tutorial
 
 The branches of this repository contain simple examples that illustrate various aspects of Svelte 3. However, the best place to see a full overview of the functionality it provides is the official tutorial at https://svelte.dev/tutorial/basics.
 
