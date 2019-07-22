@@ -1,6 +1,4 @@
-# Resources
-
-##  A Short Svelte 3 Tutorial
+# A Short Svelte 3 Tutorial
 
 ### Disclaimer
 
@@ -8,7 +6,9 @@ This repository was created as part of a presentation on Svelte that I gave to c
 
 Note that I'm definitely no Svelte expert.  I've only been playing with it in my spare time for a couple of months.  So, my apologies if anything in here is incorrect or misleading.  Feel free to raise an issue or a PR if you think something should really be fixed.
 
-Also, a number of the examples contain friendly digs at Angular, React and Vue.  That's just my sense of humour.  Please don't read anything into it.  They're all fine frameworks.  I've just been smitten by the simplicity and power of Svelte 3, and the jokes were really just to make my presentation a little less dry :smile:.
+Also, a number of the examples contain friendly digs at Angular, React and Vue.  That's just my sense of humour.  Please don't read anything into it.  They're all fine frameworks.  I've just been smitten by the simplicity and power of Svelte 3, and the jokes were really just to make my talk a little less dry :smile:.
+
+Most of my colleagues remained awake until the end, so hopefully others will get some value from it.  Enjoy!
 
 ### How To Navigate
 
@@ -62,6 +62,4 @@ Here are a few videos I think explain the concepts behind Svelte well:
   ​	https://www.youtube.com/watch?v=uapg3tstHSQ	
 
 If you search for "Svelte 3" on YouTube, you'll find a lot more, including an example of using Svelte with GraphQL https://www.youtube.com/watch?v=WqOLx2yuF3M&t=159s and a half hour crash course https://www.youtube.com/watch?v=uK2RnIzrQ0M.
-
-Anyway, my colleagues seemed to enjoy the presentation, so hopefully others will get some value from it.  Enjoy!
 
