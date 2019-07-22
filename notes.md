@@ -1,8 +1,8 @@
 # Resources
 
-##The Svelte 3 Tutorial
+##A Short Svelte 3 Tutorial
 
-This repository contains a lot of simple examples that illustrate various aspects of Svelte 3. However, the best place to see a full overview of the functionality it provides is the official tutorial at https://svelte.dev/tutorial/basics.
+The branches of this repository contain simple examples that illustrate various aspects of Svelte 3. However, the best place to see a full overview of the functionality it provides is the official tutorial at https://svelte.dev/tutorial/basics.
 
 The pages there explain things that you generally want from a framework, and how they're achieved with Svelte 3.  In particular, because it provides a REPL that runs the code, you can play around and see what effect your changes have.
 
@@ -23,10 +23,6 @@ Here are a few videos I think explain the concepts behind Svelte well:
 
   ​	https://www.youtube.com/watch?v=AdNJ3fydeao&t=11s
 
-- The same talk, but with a few refinements
-
-  ​	https://www.youtube.com/watch?v=gJ2P6hGwcgo
-
 - Harry Wolff has a couple of videos where he plays with Svelte and Sapper as a newbie, and one where he interviews Rich
 
   ​	https://www.youtube.com/watch?v=TPVQ3M9b6CY
@@ -35,11 +31,11 @@ Here are a few videos I think explain the concepts behind Svelte well:
 
   ​	https://www.youtube.com/watch?v=48gHuY4w0hY
 
-- The **Svelte Master** YouTube channel has been working through each of the pieces, in short videos of just a few minutes each (12 videos at the time of writing)
+- The **Svelte Master** YouTube channel has been working through each of the pieces of Svelte (and some Sapper), in short videos of just a few minutes each (32 videos at the time of writing)
 
   ​	https://www.youtube.com/watch?v=cU8ZPBKaEwU&list=PLcjHRSem_cvP440pjw79kB85Z_7Nn8VqZ
 
-- One that's pretty cool is a guy creating a YouTube component.  He has a slightly thick accent, but work through it, because it explains a couple of interesting things
+- One that's pretty cool is a guy creating a YouTube component.
 
   ​	https://www.youtube.com/watch?v=Ank3IdQHOuE
 
@@ -47,5 +43,5 @@ Here are a few videos I think explain the concepts behind Svelte well:
 
   ​	https://www.youtube.com/watch?v=uapg3tstHSQ	
 
-If you search for "Svelte 3" on YouTube, you'll find a lot more, for example an example of using Svelte with GraphQL https://www.youtube.com/watch?v=WqOLx2yuF3M&t=159s and a half hour crash course https://www.youtube.com/watch?v=uK2RnIzrQ0M.
+If you search for "Svelte 3" on YouTube, you'll find a lot more, including an example of using Svelte with GraphQL https://www.youtube.com/watch?v=WqOLx2yuF3M&t=159s and a half hour crash course https://www.youtube.com/watch?v=uK2RnIzrQ0M.
 
