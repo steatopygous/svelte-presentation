@@ -1,6 +1,6 @@
 # A Short Svelte 3 Tutorial
 
-### Disclaimer
+### Disclaimers
 
 This repository was created as part of a presentation on Svelte that I gave to colleagues.
 
@@ -9,6 +9,12 @@ Note that I'm definitely no Svelte expert.  I've only been playing with it in my
 Also, a number of the examples contain friendly digs at Angular, React and Vue.  That's just my sense of humour.  Please don't read anything into it.  They're all fine frameworks.  I've just been smitten by the simplicity and power of Svelte 3, and the jokes were really just to make my talk a little less dry :smile:.
 
 Most of my colleagues remained awake until the end, so hopefully others will get some value from it.  Enjoy!
+
+### Acknowledgement
+
+I've borrowed at least one of the examples directly from the Svelte documentation, just because I couldn't think of a simpler one.  From memory, it was the one that explains **#await**.
+
+I'm putting an acknowledgment here, rather than in that branch, to cover any others I may have forgotten, or end up adding in future updates.
 
 ### How To Navigate
 
