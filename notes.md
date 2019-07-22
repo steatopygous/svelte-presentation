@@ -39,7 +39,13 @@ Here are a few videos I think explain the concepts behind Svelte well:
 
   ​	https://www.youtube.com/watch?v=cU8ZPBKaEwU&list=PLcjHRSem_cvP440pjw79kB85Z_7Nn8VqZ
 
+- One that's pretty cool is a guy creating a YouTube component.  He has a slightly thick accent, but work through it, because it explains a couple of interesting things
+
+  ​	https://www.youtube.com/watch?v=Ank3IdQHOuE
+
+- There's a second video where he explains how to push it as a module to NPM.
+
+  ​	https://www.youtube.com/watch?v=uapg3tstHSQ	
+
 If you search for "Svelte 3" on YouTube, you'll find a lot more, for example an example of using Svelte with GraphQL https://www.youtube.com/watch?v=WqOLx2yuF3M&t=159s and a half hour crash course https://www.youtube.com/watch?v=uK2RnIzrQ0M.
-
-
 
